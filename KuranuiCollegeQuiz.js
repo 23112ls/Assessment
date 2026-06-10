@@ -3,37 +3,37 @@ let score = 0
 const answers = [
         //0
         { 
-            question: "When was the school established?",
+            question: "When was the school established?\n_ _ _ _",
             answer: "1960" 
         },
         //1
         {
-            question: "What year was the new gym built?",
+            question: "What year was the new gym built?\n_ _ _ _",
             answer: "2026"
         },
         //2
         {
-            question: "Why did they redo the Auditorium roof?",
-            answer: "esbestos"
+            question: "Why did they redo the Auditorium roof?\n_ _ _ _ _ _ _ _",
+            answer: "asbestos"
         },
         //3
         {
-          question: 'Is Kuranui College a Punitive or Restorative school?',
+          question: 'Is Kuranui College a Punitive or Restorative school?\n_ _ _ _ _ _ _ _ _ _ _',
           answer: 'restorative'
         },
         //4
         {
-          question: 'How many blocks are there?',
+          question: 'How many blocks are there?\n',
           answer: ''
         },
         //5
         {
-          question: 'What block teaches Science?',
+          question: 'What block teaches Science?\n_',
           answer: 'r'
         },
         //6
         {
-          question: 'What lunchtime is the uniform shop open?',
+          question: 'What lunchtime is the uniform shop open?\n_ _ _ _ _ _ _ _',
           answer: 'thursday'
         }
     
@@ -43,35 +43,23 @@ let name = prompt('Welcome to the Kuranui College quiz!\nWhat is your name?')
 let ready = confirm('We are ready for you, ' + name + '!\nWould you like to start?')
 
 if(ready !== false){
-let answerOne = prompt(answers[0].question, '_ _ _ _')
-   answerOne = answerOne.toLowerCase()
-   if (answerOne == answers[0].answer){
-   score++
-   alert('Correct!')
-}
-  else{
-  alert('Incorrect.\nAnswer: ' + answers[0].answer)
-}
-let answerTwo = prompt(answers[1].question, '_ _ _ _')
-   answerTwo = answerTwo.toLowerCase()
-   if (answerTwo == answers[1].answer){
-   score++
-   alert('Correct!')
-}
-  else{
-  alert('Incorrect.\nAnswer: ' + answers[1].answer)
-}
-let answerThree = prompt(answers[2].question, '_ _ _ _ _ _ _ _')
-   answerThree = answerThree.toLowerCase()
-   if (answerThree == answers[2].answer){
-   score++
-   alert('Correct!')
-}
-  else{
-  alert('Incorrect.\nAnswer: ' + answers[2].answer)
-}
+for (let i = 0; i < answers.length; i++) {
+
+    let userAnswer = prompt(answers[i].question);
+
+    if (userAnswer.toLowerCase() == answers[i].answer) {
+
+        score++;
+
+        alert("Correct!");
+
+    } else {
+
+        alert(`Incorrect.\nAnswer:` + answers[i].answer);
+
+    }
+
 }
 
-else if(ready == false){
-  alert('Thats unfortunate.\nHave a good day!')
+alert('Well done! you got ' + score + '/' + answers.length)
 }
