@@ -61,5 +61,21 @@ for (let i = 0; i < answers.length; i++) {
 
 }
 
-alert('Well done! you got ' + score + '/' + answers.length)
+if(score < 2){
+  level = ('an unachieved')
+}
+else if(score > 2 && score <= 4){
+  level = ('an achieved')
+}
+else if(score > 4 && score < 7){
+  level = ('a merit')
+}
+else if(score == 7){
+  level = ('an excellence')
+}
+let save = confirm('Well done! you got ' + level + ' (' + score + '/' + answers.length + ')\nWe would like to hold onto your answers\nPress OK to accept - Press Cancel to deny.')
+if(save != false){
+  console.log('Name: ' + name + '\nScore: ' + score)
+}
+alert('Have a nice day!')
 }
