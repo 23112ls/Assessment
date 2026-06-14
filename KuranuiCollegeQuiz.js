@@ -13,12 +13,12 @@ const answers = [
         },
         //2
         {
-            question: "Why did they redo the Auditorium roof?\n_ _ _ _ _ _ _ _",
+            question: "Why did they redo the Auditorium roof?\nA _ _ _ _ _ _ _",
             answer: "asbestos"
         },
         //3
         {
-          question: 'Is Kuranui College a Punitive or Restorative school?\n_ _ _ _ _ _ _ _ _ _ _',
+          question: 'Is Kuranui College a Punitive or Restorative school?',
           answer: 'restorative'
         },
         //4
@@ -33,7 +33,6 @@ const answers = [
         },
         //6
         {
-          question: 'What lunchtime is the uniform shop open?\n_ _ _ _ _ _ _ _',
           answer: 'thursday'
         }
     
