@@ -1,4 +1,5 @@
 let score = 0
+let user = 1000
 
 const answers = [
         //0
@@ -13,12 +14,12 @@ const answers = [
         },
         //2
         {
-            question: "Why did they redo the Auditorium roof?\nA _ _ _ _ _ _ _",
+            question: "Why did they redo the Auditorium roof?\nA _ _ e _ _ _ s",
             answer: "asbestos"
         },
         //3
         {
-          question: 'Is Kuranui College a Punitive or Restorative school?',
+          question: 'Is Kuranui College a Punitive or Restorative school?\n_ _ _ _ _ _ _ _ _ _ _',
           answer: 'restorative'
         },
         //4
@@ -33,6 +34,7 @@ const answers = [
         },
         //6
         {
+          question: 'What lunchtime is the uniform shop open?\nT _ _ _ _ _ _ _',
           answer: 'thursday'
         }
     
@@ -47,15 +49,11 @@ for (let i = 0; i < answers.length; i++) {
     let userAnswer = prompt(answers[i].question);
 
     if (userAnswer.toLowerCase() == answers[i].answer) {
-
         score++;
-
         alert("Correct!");
 
     } else {
-
-        alert(`Incorrect.\nAnswer:` + answers[i].answer);
-
+        alert(`Incorrect.\nAnswer: ` + answers[i].answer);
     }
 
 }
@@ -72,9 +70,16 @@ else if(score > 4 && score < 7){
 else if(score == 7){
   level = ('an excellence')
 }
-let save = confirm('Well done! you got ' + level + ' (' + score + '/' + answers.length + ')\nWe would like to hold onto your answers\nPress OK to accept - Press Cancel to deny.')
+if(level == 'an unachieved'){
+  congratulate = ('Well done for trying, ' + name + '! But unfortunately you recieved ')
+}
+else if(level !== 'an unachieved'){
+  congratulate = ('Well done, ' + name + '! You recieved ')
+}
+let save = confirm(congratulate + level + ' (' + score + '/' + answers.length + ')\nWe would like to hold onto your answers\nPress OK to accept - Press Cancel to deny.')
 if(save != false){
-  console.log('Name: ' + name + '\nScore: ' + score)
+  user++
+  console.log('Participant: ' + user + '\nName: ' + name + '\nScore: ' + score)
+}
 }
 alert('Have a nice day!')
-}
