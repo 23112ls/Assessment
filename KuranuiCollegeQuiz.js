@@ -1,10 +1,11 @@
 //This is a small quiz to test the knowledge of kuranui students and teachers on odd things.
 //Score is to give back a score to the user of how many questions they got correct.
-//User is a fun extra that is't important to the user, but appears in the terminal.
 //Let Ready establishes ready before it is in an if tag.
+function quiz(){
 let score = 0
-let user = 1000
 let ready = false
+let level
+let congratulate
 
 //This is an array holding the questions and answers for the quiz, there are number comments to save time but have no effect to the code.
 const answers = [
@@ -51,6 +52,7 @@ const answers = [
 //Ready asks the user if they would like to start the quiz, if they press cancel the window closes.
 let name = prompt('Welcome to the Kuranui College quiz!\nWhat is your name?')
 let age = prompt('How old are you?')
+
 if (age < 13){
   alert('Unfortunately you are too young to take this quiz.')
 }
@@ -59,12 +61,9 @@ else if(age > 18){
   ready = true
 }
 else if(age >=13 && age < 19){
-  let ready = confirm('We are ready for you, ' + name + '!\nWould you like to start?')
+  ready = confirm('We are ready for you, ' + name + '!\nWould you like to start?')
 }
-else if(age2 == 'old'){
-  
-  
-}
+
 //This for loop handles the entire quiz in a very simple format, making the code less messy.
 //Changing the user's answer to lowercase and keeping the answers in lowercase minimises bugs.
 if(ready !== false){
@@ -72,7 +71,7 @@ for (let i = 0; i < answers.length; i++) {
 
     let userAnswer = prompt(answers[i].question);
 
-    if (userAnswer.toLowerCase() == answers[i].answer) {
+    if (userAnswer && userAnswer.toLowerCase() == answers[i].answer) {
         score++;
         alert("Correct!");
 
@@ -104,8 +103,8 @@ else if(level !== 'an unachieved'){
   congratulate = ('Well done, ' + name + '! You recieved ')
 }
 
-//This conform command contratulates the user, tells the score & level, then asks if we can keep the details (extra).
-let save = confirm(congratulate + level + ' (' + score + '/' + answers.length + ')\nWe would like to hold onto your answers\nPress OK to accept - Press Cancel to deny.')
+//This conform command contratulates the user, tells the score & level.
+let save = confirm(congratulate + level + ' (' + score + '/' + answers.length + ')')
 if(save != false){
   user++
   console.log('Participant: ' + user + '\nName: ' + name + '\nScore: ' + score)
@@ -114,3 +113,4 @@ if(save != false){
 
 //Goodbye alert happens whether or not they chose for us to keep their answers, or whether or not they even took the quiz.
 alert('Have a nice day!')
+}
