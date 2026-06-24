@@ -82,7 +82,7 @@ for (let i = 0; i < answers.length; i++) {
 }
 
 //This decides the user's level, whether they receive: Unachieved, Achieved, Merit, or Excellence. It uses the users score to decide.
-if(score < 2){
+if(score <= 2){
   level = ('an unachieved')
 }
 else if(score > 2 && score <= 4){
@@ -104,11 +104,8 @@ else if(level !== 'an unachieved'){
 }
 
 //This conform command contratulates the user, tells the score & level.
-let save = confirm(congratulate + level + ' (' + score + '/' + answers.length + ')')
-if(save != false){
-  user++
-  console.log('Participant: ' + user + '\nName: ' + name + '\nScore: ' + score)
-}
+alert(congratulate + level + ' (' + score + '/' + answers.length + ')')
+
 }
 
 //Goodbye alert happens whether or not they chose for us to keep their answers, or whether or not they even took the quiz.
