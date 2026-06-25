@@ -1,13 +1,19 @@
-//This is a small quiz to test the knowledge of kuranui students and teachers on odd things.
-//Score is to give back a score to the user of how many questions they got correct.
-//Let Ready establishes ready before it is in an if tag.
+//--------------------------------------
+// THE KURANUI COLLEGE QUIZ
+// 
+//--------------------------------------
+//Declares variables before they are used in if statements so they can be used throughout the program.
 function quiz(){
 let score = 0
-let ready = false
-let level
+let ready
+let achievement
 let congratulate
+let contin
 
-//This is an array holding the questions and answers for the quiz, there are number comments to save time but have no effect to the code.
+//--------------------------------------
+// The questions and answers that are easily expandable.
+//--------------------------------------
+//adding number notes above each item in the array makes it easier to identify the item number.
 const answers = [
         //0
         { 
@@ -16,7 +22,7 @@ const answers = [
         },
         //1
         {
-            question: "What year was the new gym built?\n_ _ _ _",
+            question: "When did the new gymnasium open?\n_ _ _ _",
             answer: "2026"
         },
         //2
@@ -31,8 +37,8 @@ const answers = [
         },
         //4
         {
-          question: 'How many blocks are there?\n',
-          answer: ''
+          question: 'How many blocks are there?\n_',
+          answer: '8'
         },
         //5
         {
@@ -47,67 +53,100 @@ const answers = [
     
     ]
 
-//This is the prompt to the start of the quiz
-//This checks how old the user is, to see if they're old enough to attend Kuranui College, or are a former student/teacher who can take the quiz.
-//Ready asks the user if they would like to start the quiz, if they press cancel the window closes.
+//--------------------------------------
+// Pre-quiz questions, getting details like name and age for eligibility.
+//--------------------------------------
 let name = prompt('Welcome to the Kuranui College quiz!\nWhat is your name?')
-let age = prompt('How old are you?')
+let age = prompt('How old are you?', '14')
 
-if (age < 13){
-  alert('Unfortunately you are too young to take this quiz.')
+//Making seperate if statements for whether to use years (plural) or just year, especially for just one number (12) would make the code much more cluttered for little reward. Adding 'year(s)' doesn't look sloppy and saves unneeded clutter.
+if (age >= 1 && age < 13){
+  age = (13 - age)
+  alert('Unfortunately you are too young to take this quiz.\nYou can take this quiz in ' + age + ' year(s).')
 }
-else if(age > 18){
-  let teacher = prompt('You seem to be too old to attend Kuranui College, are you a teacher or former student?')
-  ready = true
+else if(age > 18 && age <= 116){
+  let teachForm = confirm(
+    'You seem to be too old to attend Kuranui College, are you a teacher or former student?'
+  )
+  if(teachForm == true){
+    ready = true
+  }
+  else{
+    ready = false
+  }
 }
-else if(age >=13 && age < 19){
+
+//The if statement lets both teachers/former students and current students start at the same point, instead of repetitive code.
+if((age >=13 && age < 19) || ready == true){
   ready = confirm('We are ready for you, ' + name + '!\nWould you like to start?')
 }
 
-//This for loop handles the entire quiz in a very simple format, making the code less messy.
-//Changing the user's answer to lowercase and keeping the answers in lowercase minimises bugs.
-if(ready !== false){
+//--------------------------------------
+// Start of the quiz, a for loop to keep it easily expandable and clean - while not being painfully long.
+//--------------------------------------
+if(ready == true){
 for (let i = 0; i < answers.length; i++) {
 
     let userAnswer = prompt(answers[i].question);
 
-    if (userAnswer && userAnswer.toLowerCase() == answers[i].answer) {
+    if(userAnswer == "" || userAnswer == null){
+        contin = confirm('You did not input an answer, would you like to continue with the quiz?')
+        
+        if(contin == true){
+            i--
+            continue
+        }
+        else{
+            ready = false
+            break
+        }
+    }
+    else if(userAnswer.toLowerCase() == answers[i].answer){
         score++;
         alert("Correct!");
 
-    } else {
+    }
+    else{
         alert(`Incorrect.\nAnswer: ` + answers[i].answer);
     }
 
 }
 
-//This decides the user's level, whether they receive: Unachieved, Achieved, Merit, or Excellence. It uses the users score to decide.
+if(ready == false){
+  alert('Have a nice day, ' + name + '!')
+  return score
+}
+
+//--------------------------------------
+// The results.
+//--------------------------------------
+//Achievement uses the users score to determine whether the user receives a U, A, M or E. Having a score in literature form can help everyday users understand their achievements a bit more clearly.
+//Due to Merit being different from the rest in a grammatical perspective, adding 'an' or 'a' keeps it grammatically correct while being simple and clutter free.
 if(score <= 2){
-  level = ('an unachieved')
+  achievement = ('an unachieved')
 }
 else if(score > 2 && score <= 4){
-  level = ('an achieved')
+  achievement = ('an achieved')
 }
 else if(score > 4 && score < 7){
-  level = ('a merit')
+  achievement = ('a merit')
 }
 else if(score == 7){
-  level = ('an excellence')
+  achievement = ('an excellence')
 }
 
-//If the user scores an unachieved, they don't get congratulated as much as achieving.
-if(level == 'an unachieved'){
-  congratulate = ('Well done for trying, ' + name + '! But unfortunately you recieved ')
+//Two if statements determine whether the user got an unachieved or above, so they're not congratulated on failing.
+if(achievement == 'an unachieved'){
+  congratulate = ('Well done for trying, ' + name + '! But unfortunately you received ')
 }
-else if(level !== 'an unachieved'){
-  congratulate = ('Well done, ' + name + '! You recieved ')
-}
-
-//This conform command contratulates the user, tells the score & level.
-alert(congratulate + level + ' (' + score + '/' + answers.length + ')')
-
+else if(achievement !== 'an unachieved'){
+  congratulate = ('Well done! You received ')
 }
 
-//Goodbye alert happens whether or not they chose for us to keep their answers, or whether or not they even took the quiz.
-alert('Have a nice day!')
+alert(congratulate + achievement + ' (' + score + '/' + answers.length + ')')
+
+}
+
+//This alert is given when the user finishes the quiz, and even if the user doesn't do the test all together.
+alert('Have a nice day, ' + name + '!')
 }
