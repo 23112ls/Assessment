@@ -37,8 +37,8 @@ const answers = [
         },
         //4
         {
-          question: 'How many blocks are there?\n_',
-          answer: '8'
+          question: 'What is the last name of the drama teacher?\n_ _ _ e l l _ _',
+          answer: 'mclellan'
         },
         //5
         {
@@ -65,9 +65,7 @@ if (age >= 1 && age < 13){
   alert('Unfortunately you are too young to take this quiz.\nYou can take this quiz in ' + age + ' year(s).')
 }
 else if(age > 18 && age <= 116){
-  let teachForm = confirm(
-    'You seem to be too old to attend Kuranui College, are you a teacher or former student?'
-  )
+  let teachForm = confirm('You seem to be too old to attend Kuranui College, are you a teacher or former student?')
   if(teachForm == true){
     ready = true
   }
